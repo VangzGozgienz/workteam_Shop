@@ -19,11 +19,11 @@ public class Collectors implements Serializable {
 	/** 收藏时间. */
 	private String collecttime;
 
-	/** 分类名称. */
-	private String classify;
-
 	/** 商品编号. */
 	private Integer goodsid;
+
+	/** 用户编号. */
+	private Integer userid;
 
 	/**
 	 * 僐儞僗僩儔僋僞.
@@ -70,25 +70,6 @@ public class Collectors implements Serializable {
 	}
 
 	/**
-	 * 分类名称 傪愝掕偟傑偡.
-	 * 
-	 * @param classify
-	 *            分类名称
-	 */
-	public void setClassify(String classify) {
-		this.classify = classify;
-	}
-
-	/**
-	 * 分类名称 傪庢摼偟傑偡.
-	 * 
-	 * @return 分类名称
-	 */
-	public String getClassify() {
-		return this.classify;
-	}
-
-	/**
 	 * 商品编号 傪愝掕偟傑偡.
 	 * 
 	 * @param goodsid
@@ -105,6 +86,25 @@ public class Collectors implements Serializable {
 	 */
 	public Integer getGoodsid() {
 		return this.goodsid;
+	}
+
+	/**
+	 * 用户编号 傪愝掕偟傑偡.
+	 * 
+	 * @param userid
+	 *            用户编号
+	 */
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+
+	/**
+	 * 用户编号 傪庢摼偟傑偡.
+	 * 
+	 * @return 用户编号
+	 */
+	public Integer getUserid() {
+		return this.userid;
 	}
 
 	/**

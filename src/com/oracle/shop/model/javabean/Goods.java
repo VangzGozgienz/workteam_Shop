@@ -10,14 +10,6 @@ import java.io.Serializable;
  */
 public class Goods implements Serializable {
 
-	@Override
-	public String toString() {
-		return "Goods [goodsid=" + goodsid + ", goodsname=" + goodsname
-				+ ", goodstype=" + goodstype + ", goodsprice=" + goodsprice
-				+ ", goodsnumber=" + goodsnumber + ", goodspic=" + goodspic
-				+ "]";
-	}
-
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 

@@ -10,12 +10,6 @@ import java.io.Serializable;
  */
 public class Users implements Serializable {
 
-	@Override
-	public String toString() {
-		return "Users [userid=" + userid + ", username=" + username
-				+ ", password=" + password + ", nicheng=" + nicheng + "]";
-	}
-
 	/** serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +24,9 @@ public class Users implements Serializable {
 
 	/** 昵称. */
 	private String nicheng;
+
+	/** 用户头像. */
+	private String image;
 
 	/**
 	 * 僐儞僗僩儔僋僞.
@@ -111,6 +108,25 @@ public class Users implements Serializable {
 	 */
 	public String getNicheng() {
 		return this.nicheng;
+	}
+
+	/**
+	 * 用户头像 傪愝掕偟傑偡.
+	 * 
+	 * @param image
+	 *            用户头像
+	 */
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	/**
+	 * 用户头像 傪庢摼偟傑偡.
+	 * 
+	 * @return 用户头像
+	 */
+	public String getImage() {
+		return this.image;
 	}
 
 	/**

@@ -1,24 +1,26 @@
+<%@page import="com.oracle.shop.model.javabean.Users"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.oracle.shop.model.javabean.Goods"%>
-<%@page import="com.oracle.shop.model.javabean.Orders"%>
-<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
-<title>全部订单-我的订单-会员中心-澳猫团</title>
+<title>收藏夹-澳猫团</title>
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/Member.css">
+<link rel="stylesheet" href="css/list.css">
+<base target="_blank">
 </head>
 <body>
 	<header class="wrap-all">
@@ -30,8 +32,25 @@
 					</a>
 				</div>
 				<div class="user">
-					<a target="_blank" href="#">登录</a> <span>|</span> <a
-						target="_blank" href="#">免费注册</a>
+					<%
+						if(session.getAttribute("logineduser")==null){
+					%>
+					<a href="login.jsp">登录</a> <span>|</span> <a target="_blank"
+						href="register.jsp">免费注册</a>
+					<%
+						}else{
+					%>
+					<img
+						src="<%=((Users)session.getAttribute("logineduser")).getImage()%>"
+						style="width: 16px; height: 16px; border-radius: 8px; border: 1px solid black; margin-left: 5px; margin-right: 5px; position: relative; top: 5px; box-shadow: 0px 0px 2px green" />欢迎您：<B
+						style="text-shadow: 0px 0px 1px green"><%=((Users)session.getAttribute("logineduser")).getNicheng()%></B>!
+
+					<%---这里应该是让安全退出的超级链接请求到后台的control方法，
+							方法里需要移除之前在session中保存的用户信息，然后后台直接跳转道网站首页？？？ --%>
+					<a href="">安全退出</a>
+					<%
+						}
+					%>
 				</div>
 				<div class="phone">
 					<a href="#"> <em></em> <span>手机逛澳猫</span>
@@ -205,7 +224,7 @@
 			</div>
 		</div>
 		<!--购物车-->
-		<a href="#" class="buy_car">
+		<a href="car/list" class="buy_car">
 			<p>购物车</p> <em>0</em>
 		</a>
 		<!-- 新会员 -->
@@ -534,177 +553,53 @@
 			</div>
 		</div>
 	</div>
-	<!-- 位置导航 -->
-	<div class="MeSubNavW">
-		<ul class="MeSubNav clearfix textWarp w1190">
-			<li><a target="_blank" href="#">我的账户</a></li>
-			<li>&gt;</li>
-			<li><a target="_blank" href="#">我的订单</a></li>
-		</ul>
-	</div>
-	<!-- 主要内容 -->
-	<div class="MeMainW">
-		<div class="MeMain  w1190">
-			<div class="MeArea clearfix">
-				<!-- 左边导航 -->
-				<div class="MeLeftNav">
-					<div class="Mehead">
-						<div class="pic"></div>
-						<div class="txt">
-							<p class="userName">15***11@qq.com</p>
-							<p class="rank">
-								<i>V1</i>普通会员
-							</p>
-						</div>
-					</div>
-					<div class="MeTitle">
-						<dl class="personCenter">
-							<dt>
-								<em>个人中心</em>
-							</dt>
-							<dd>
-								<em><i>·</i>我的订单</em>
-							</dd>
-							<dd>
-								<em><i>·</i>购物车</em>
-							</dd>
-							<dd>
-								<em><i>·</i>已购商品评价</em>
-							</dd>
-							<dd>
-								<em><i>·</i>愿望单</em>
-							</dd>
-							<dd>
-								<em><i>·</i>快速购买</em>
-							</dd>
-							<dd>
-								<em><i>·</i>我的优惠券</em>
-							</dd>
-						</dl>
-						<dl class="MeGroup">
-							<dt>
-								<em>我的团</em>
-							</dt>
-							<dd>
-								<em><i>·</i>团购商品发布</em>
-							</dd>
-							<dd>
-								<em><i>·</i>银牌买手申请</em>
-							</dd>
-							<dd>
-								<em><i>·</i>金牌买手申请</em>
-							</dd>
-						</dl>
-						<dl class="MeInformation">
-							<dt>
-								<em>个人信息</em>
-							</dt>
-							<dd>
-								<em><i>·</i>修改密码</em>
-							</dd>
-							<dd>
-								<em><i>·</i>个人消息</em>
-							</dd>
-							<dd>
-								<em><i>·</i>身份证</em>
-							</dd>
-						</dl>
-						<dl class="MePlace">
-							<dt>
-								<em>管理收货地址</em>
-							</dt>
-						</dl>
-						<dl class="recently">
-							<dt>
-								<em>最近浏览</em>
-							</dt>
-						</dl>
-					</div>
-				</div>
-				<!-- 右边主要内容 -->
-				<div class="MeRightArea">
-					<!-- 个人中心 -->
-					<div class="personArea">
-						<!-- 我的订单 -->
-						<div class="MeorderArea ">
-							<!-- 我的订单的上面导航 -->
-							<ol class="persontab">
-								<li class=" current"><a href="">全部订单</a></li>
-								<li><a href="">待付款</a></li>
-								<li><a href="">海关清关</a></li>
-								<li><a href="">待发货</a></li>
-								<li><a href="">待收货</a></li>
-								<li><a href="">待评论</a></li>
-								<li class=" last"><a href="">我的常购商品</a></li>
-								<li class="clearfix btn"><input type="text"
-									placeholder="商品名称/商品编号">
-								<button>搜索</button></li>
-							</ol>
-							<!-- 选择标题部分 -->
-							<div class="sect">
-								<ul>
-									<li class="sectTime">近三个月订单</li>
-									<li class="sectDetail">订单详情</li>
-									<li class="sum">金额</li>
-									<li class="all">全部状态</li>
-									<li class="handle">操作</li>
-								</ul>
+	<div class="mainArea">
+		<!-- 主要内容 -->
+		<div class="content w1190 clearfix">
+			<div class="mianContent" style="float: left;margin-top: 20px;min-height: 200px">
+				<!-- 商品内容 -->
+				<div class="product" style="margin: auto;">
+				
+				<% if(((List<Goods>)request.getAttribute("gs")).size()==0){
+					%>
+					
+					<span style="font-size: 1cm;color: #00A9ED;font-weight: bold;margin-top: 50px;display: block;">您尚未收藏任何商品！</span>
+					<%
+				}else{ %>
+					<ul class="clearfix">
+						<%
+							List<Goods> gs=(List<Goods>)request.getAttribute("gs");
+																		for(Goods  g:gs){
+						%>
+
+						<li style="margin-right: 8px">
+							<div class="hoverShow collect"></div> <!-- <div class="hoverShow wish"><em></em>加入心愿单</div> -->
+							<div class="show">
+								<a class="add" href="car/add?pid=<%=g.getGoodsid()%>">加入购物车</a>
+								<a class="contrast" target="_self" href="fav/delete?pid=<%=g.getGoodsid()%>">移除收藏夹</a>
 							</div>
-							<!-- 个人中心的内容 -->
-							<!-- 全部订单 -->
-							<div class="MeOrder">
-								<% Map<Orders, Map<Goods, Integer>> od=(Map<Orders, Map<Goods, Integer>>)request.getAttribute("orderDetail");
-									for(Orders o:od.keySet()){
-								%>
-									<div style="border: 1px solid blue;padding-top: 20px">
-									<h1 style="margin-bottom: 20px;margin-left: 20px;text-shadow: 0px 0px 2px green">订单编号:<%=o.getOrderid() %>&nbsp;&nbsp;&nbsp;
-									下单时间:<%=o.getOrderdate() %>&nbsp;&nbsp;&nbsp;
-									收货人:<%=o.getName() %>&nbsp;&nbsp;&nbsp;
-									收货地址:<%=o.getAddress()%>&nbsp;&nbsp;&nbsp;
-									</h1>
-									<% for(Goods g:od.get(o).keySet()){ %>
-								
-								<!-- 报关中 -->
-								<div class="merchandiseList">
-									<div class="ListArea">
-										
-										<ul class="ListTable">
-										
-											<li class="one clearfix"><a href="">
-													<div class="pruPic">
-														<img src="<%=g.getGoodspic() %>" alt="">
-													</div>
-													<div class="pruTitle"><%=g.getGoodsname() %></div>
-											</a>
-												<div class="pruNum">
-													×<i><%=od.get(o).get(g) %></i>
-												</div></li>
-											<li class="three">
-												<p>总额￥<%=od.get(o).get(g)*g.getGoodsprice() %>/p>
-												<p>在线支付</p>
-												<p>含税/运费：￥0.00</p>
-											</li>
-											<li class="four">
-												<p class="ing"><%=o.getOrderstatus() %></p>
-												<p>
-													<a href="">订单详情</a>
-												</p>
-											</li>
-											<li class="five"><a href="">取消订单</a></li>
-											
-										</ul>
-									</div>
-									
-								</div>
-								<%} %>
-									</div>
-								
-								<%} %>
-								
-								
+							<div class="proImg">
+								<a href="#"> <img class="lazy" src="<%=g.getGoodspic()%>"
+									data-original="<%=g.getGoodspic()%>" alt="">
+								</a>
 							</div>
-						</div>
-					</div>
+							<div class="proTxt">
+								<p>
+									<a href="#"><%=g.getGoodsname()%></a>
+								</p>
+								<p class="num"><%=g.getGoodsnumber()%></p>
+								<p>
+									<strong>￥<%=g.getGoodsprice()%></strong> <s>￥<%=g.getGoodsprice()%></s>
+								</p>
+							</div>
+						</li>
+
+						<%
+							}
+						%>
+					</ul>
+					
+					<%} %>
 				</div>
 			</div>
 		</div>
@@ -872,35 +767,35 @@
 	<footer>
 		<div class="up">
 			<div class="txt textWarp  w1190">
-				<ul>
-					<li><a target="_blank" href="../../haitao">关于澳猫海淘</a></li>
-					<li><a target="_blank" href="../../Recruitment">商家入驻</a></li>
-					<li><a target="_blank" href="../../collaborate">网站合作</a></li>
-					<li><a target="_blank" href="../../friend">友情链接</a></li>
-					<li><a target="_blank" href="../../publicBenefit">澳猫公益</a></li>
-					<li><a target="_blank" href="../../law">法律声明</a></li>
-					<li><a target="_blank" href="../../hr">诚聘英才</a></li>
-					<li><a target="_blank" href="../../contactus">联系我们</a></li>
-					<!--<li><a target="_blank" href="">网站地图</a></li>-->
+				<!-- <ul>
+					<li><a target="_blank" href="#">关于澳猫海淘</a></li>
+					<li><a target="_blank" href="#">商家入驻</a></li>
+					<li><a target="_blank" href="#">网站合作</a></li>
+					<li><a target="_blank" href="#">友情链接</a></li>
+					<li><a target="_blank" href="#">澳猫公益</a></li>
+					<li><a target="_blank" href="#">法律声明</a></li>
+					<li><a target="_blank" href="#">诚聘英才</a></li>
+					<li><a target="_blank" href="#">联系我们</a></li>
+					<li><a target="_blank" href="#">网站地图</a></li>
 				</ul>
-				<!-- <ul class="twoArea">
-                     <li><a target="_blank" href="#">澳猫云商</a></li>
-                     <li><a target="_blank" href="#">澳洲澳猫</a></li><span>|</span>
-                     <li><a target="_blank" href="#">康多多</a></li><span>|</span>
-                     <li><a target="_blank" href="#">PPTV</a></li><span>|</span>
-                     <li><a target="_blank" href="#">红孩子</a></li><span>|</span>
-                     <li><a target="_blank" href="#">缤购</a></li><span>|</span>
-                     <li><a target="_blank" href="#">乐购仕</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫物流</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫澳大利亚</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫新西兰</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫物流</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫澳大利亚</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫新西兰</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫物流</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫澳大利亚</a></li><span>|</span>
-                     <li><a target="_blank" href="#">澳猫新西兰</a></li>
-                 </ul>-->
+				<ul class="twoArea">
+					<li><a target="_blank" href="#">澳猫云商</a></li>
+					<li><a target="_blank" href="#">澳洲澳猫</a></li><span>|</span>
+					<li><a target="_blank" href="#">康多多</a></li><span>|</span>
+					<li><a target="_blank" href="#">PPTV</a></li><span>|</span>
+					<li><a target="_blank" href="#">红孩子</a></li><span>|</span>
+					<li><a target="_blank" href="#">缤购</a></li><span>|</span>
+					<li><a target="_blank" href="#">乐购仕</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫物流</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫澳大利亚</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫新西兰</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫物流</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫澳大利亚</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫新西兰</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫物流</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫澳大利亚</a></li><span>|</span>
+					<li><a target="_blank" href="#">澳猫新西兰</a></li>
+				</ul> -->
 				<p>
 					澳大利亚Health more - 河南康多多贸易有限公司 - 河南澳蜜电子商务有限公司 版权所有<br>
 					Copyright © 20015-2018 澳猫aumalls.com 版权所有, 豫ICP备15030837号-1
@@ -910,7 +805,7 @@
 		</div>
 	</footer>
 	<script src="js/jquery-1.7.2.min.js"></script>
-	<script src="js/member.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
 	<script src="js/base.js"></script>
 </body>
 </html>
