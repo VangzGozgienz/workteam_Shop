@@ -7,126 +7,146 @@
 %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<base href="<%=basePath%>">
-	<meta charset="UTF-8">
-	<title>注册页-澳猫团</title>
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/base1.css">
-	<link rel="stylesheet" href="css/login.css">
-	<!-- 视图窗口，移动端特属的标签。 -->
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
-	<link media="screen and (min-width: 992px) and (max-width:1200px)" rel="stylesheet" href="css/base1-small.css">
-	<link media="screen and (min-width: 992px) and (max-width:1200px)" rel="stylesheet" href="css/login-small.css">
-	<link media="screen and (min-width: 768px) and (max-width:991px)" rel="stylesheet" href="css/base1-pad.css">
-	<link media="screen and (min-width: 768px) and (max-width:991px)" rel="stylesheet" href="css/login-pad.css">
-</head>
-<body>
-	<!-- 顶部 -->
-	<header>
-		<!-- 搜索和logo -->
-		<div class="logoAndSearch textWarp w1190 clearfix">
-			<div class="logo">
-				<a href="index.jsp">澳猫网</a>
-			</div>
-			<div class="LAStxt">
-				欢迎注册
-			</div>
-			<div class="search">
-				<div class="txt">
-					<input type="text" placeholder="Swisse/澳洲">
-					<em></em>
-				</div>
-				<a href="#" class="btn">
-					搜索
-				</a>
-				<ul>
-					<li><a target="_blank" href="#">胶原蛋白</a></li>
-					<li><a target="_blank" href="#">叶绿素</a></li>
-					<li><a target="_blank" href="#">睡眠片</a></li>
-					<li><a target="_blank" href="#">儿童维生素</a></li>
-					<li><a target="_blank" href="#">鱼肝油</a></li>
-					<li><a target="_blank" href="#">保健品</a></li>
-					<li><a target="_blank" href="#">美容</a></li>
-					<li class="BN"><a target="_blank" href="#">运动保健</a></li>
-				</ul>
-			</div>
-		</div>
-	</header>
-	<!-- 中间内容 -->
-	<div class="mainArea">
-		<div class="mainAreaW textWarp w1190">
-			<div class="mainContent boxS">
-				<div class="MCup clearfix">
-					<div class="MCright W310">
-						<form method="post" action="user/register">
-						<h3 class="clearfix">
-							<span>注册澳猫团</span>
-							<a target="_blank" href="login.jsp">登录</a>
-						</h3>
-						<p class="userName">
-							<em></em>
-							<input class="W310" name="username" placeholder="请输入您的手机号/邮箱" type="text">
-						</p>
-						<p class="passWord">
-							<em></em>
-							<input class="W310" name="password" placeholder="请输入密码" type="password">
-						</p>
-						<p class="userName">
-							<em></em>
-							<input class="W310" name="nickname" placeholder="请输入昵称" type="text">
-						</p>
-						<p class="clearfix yzm">
-							<input type="text" placeholder="验证码">
-							<span class="Ypic">
-								<span class="YP"></span>
-								<a href="#">换一张</a>
-							</span>
-						</p>
-						<p class="clearfix Jzmm">
-							<span class="checkbox checked"></span>
-							<span>记住密码</span>
-							<a target="_blank" href="#">忘记密码？</a>
-						</p>
-						<input class="loGin W310" type="submit" value="注册" />
-						</form>
-					</div>
-					<div class="MCleft W115">
-						<img src="images/default.jpg"  style="width: 100px;height: 100px" alt="二维码">
-						<p>请选择用户头像</p>
-<!-- 						<div class="pL"> -->
-<!-- 							<span><input type="file" /></span> -->
-<!-- 							<strong>m.aumalls.com</strong> -->
-<!-- 						</div> -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 底部 -->
-	<footer>
-		<div class="txt textWarp w1190">       
-			<ul>
-				<li><a href="#">关于澳猫海淘</a></li>
-				<li><a href="#">商家入驻</a></li>
-				<li><a href="#">网站合作</a></li>
-				<li><a href="#">友情链接</a></li>
-				<li><a href="#">澳猫公益</a></li>
-				<li><a href="#">法律声明</a></li>
-				<li><a href="#">诚聘英才</a></li>
-				<li><a href="#">联系我们</a></li>
-				<li><a href="#">网站地图</a></li>
-			</ul>
-			<p>
-				澳大利亚Health more - 河南康多多贸易有限公司 - 河南澳蜜电子商务有限公司 版权所有<br>
-				Copyright © 20015-2018  澳猫aumalls.com 版权所有, 豫ICP备15030837号-1
-			</p>
-			<div class="ALLN"></div>
-		</div>
-	</footer>
-	<script src="js/jquery-1.7.2.min.js"></script>
-	<script src="js/jquery.lazyload.min.js"></script>
-	<script src="js/login.js"></script>
-</body>
+
+    <head>
+	<base href="<%=basePath%>">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+
+        <title>Bootstrap Modal Registration Form Template</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+
+        <!-- Content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                        	<a class="logo" target="_self" href="index.jsp"></a>
+                            <h1><strong>TEAM_10</strong> 注册澳猫团</h1>
+                            <div class="description">
+                            	<p>
+	                            	这是一个免费的响应模式注册表与引导。你可以随意使用它!
+                            	</p>
+                            </div>
+                            <div class="top-big-link">
+                            	<a class="btn btn-link-1 launch-modal" target="_self" href="#" data-modal-id="modal-register">注册</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- MODAL -->
+        <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
+        	<div class="modal-dialog">
+        		<div class="modal-content">
+        			
+        			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">
+        					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        				</button>
+        				<h3 class="modal-title" id="modal-register-label">立即注册</h3>
+        				<p>请填写下面的表格以获得即时访问权限:</p>
+        			</div>
+        			
+        			<div class="modal-body">
+        				
+        				
+	                    <form name="forms" onsubmit="return check(this)" role="form" action="user/register" method="post" class="registration-form">
+	                    	<div class="form-group">
+	                    		
+	                        	<input type="text" name="username" placeholder="Username..." class="form-first-name form-control" id="form-first-name">
+	                        </div>
+	                        <div class="form-group">
+	                        	
+	                        	<input type="text" name="nickname" placeholder="Nickname..." class="form-last-name form-control" id="form-last-name">
+	                        </div>
+	                        <div class="form-group">
+	                        	
+	                        	<input id="pwd" type="password" name="password" placeholder="Password..." class="form-email form-control" id="form-email">
+	                        </div>
+	                         <span class="box" id="btn"><a href="javascript:showPsw();">显示密码</a></span>
+	                        <button type="submit" class="btn">Sign me up!</button>
+	                        
+	                        <script type="text/javascript">
+	                        	function check(form) {
+	                        		if(!form.username.value || !form.nickname || !form.password.value) {
+	                        			alert("error");
+	                        			return false;
+	                        		}
+	                        	}
+	                        	 		var ele = {
+	                        	            pwd : document.getElementById('pwd'),
+	                        	            btn : document.getElementById('btn'),
+	                        	            showP : '<a href="javascript:showPsw();">显示密码</a>',
+	                        	            hideP : '<a href="javascript:hidePsw();">隐藏密码</a>'
+	                        	        }
+	                        	        function showPsw(){
+	                        	            if(ele.pwd.type==='password'){
+	                        	                ele.pwd.type = 'text';
+	                        	                ele.btn.innerHTML = ele.hideP;
+	                        	            }
+	                        	        }
+	                        	        function hidePsw(){
+	                        	            if(ele.pwd.type==='text'){
+	                        	                ele.pwd.type = 'password';
+	                        	                ele.btn.innerHTML = ele.showP;
+	                        	            }
+	                        	        }
+	                        	
+	                        </script>
+	                    </form>
+	                    
+        			</div>
+        			
+        		</div>
+        	</div>
+        </div>
+
+
+        <!-- javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
 </html>

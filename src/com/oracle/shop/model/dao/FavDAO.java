@@ -21,4 +21,9 @@ public interface FavDAO {
 	
 	@Delete("delete from collectors where goodsid=#{productid} and userid=#{userid}")
 	public int deleteProductFromFav(@Param("userid")int userid,@Param("productid")int productid);
+	
+	@Insert("insert into shopcart(carnumber,userid,goodsid) values(1,#{userid},#{productid})")
+	public int moveProductToShopcar(@Param("userid")int userid,@Param("productid")int productid);
+	
+	
 }

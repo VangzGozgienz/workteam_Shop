@@ -42,7 +42,7 @@
 			<!-- 头部右边 -->
 			<div class="headRight">
 				<ul>
-					<li><a href="#">我的订单</a></li>
+					<li><a href="order/list">我的订单</a></li>
 					<span>|</span>
 					<li class="erWrap"><strong></strong> <a href="#">个人中心</a> <em></em>
 						<p class="headEr">
@@ -657,7 +657,7 @@
 									for(Orders o:od.keySet()){
 								%>
 									<div style="border: 1px solid blue;padding-top: 20px">
-									<h1 style="margin-bottom: 20px;margin-left: 20px;text-shadow: 0px 0px 2px green">订单编号:<%=o.getOrderid() %>&nbsp;&nbsp;&nbsp;
+									<h1 style="margin-bottom: 20px;margin-left: 20px">订单编号:<%=o.getOrderid() %>&nbsp;&nbsp;&nbsp;
 									下单时间:<%=o.getOrderdate() %>&nbsp;&nbsp;&nbsp;
 									收货人:<%=o.getName() %>&nbsp;&nbsp;&nbsp;
 									收货地址:<%=o.getAddress()%>&nbsp;&nbsp;&nbsp;
@@ -690,7 +690,7 @@
 													<a href="">订单详情</a>
 												</p>
 											</li>
-											<li class="five"><a href="">取消订单</a></li>
+											<li class="five"><a href="javascript:deleteProduct('<%=o.getOrderid()  %>')">取消订单</a></li>
 											
 										</ul>
 									</div>
@@ -700,7 +700,13 @@
 									</div>
 								
 								<%} %>
-								
+								<script type="text/javascript">
+			function deleteProduct(pid){
+				if(window.confirm('确认删除这个订单吗')){
+					location.href='order/delete?pid='+pid;
+				}
+			}
+			</script>
 								
 							</div>
 						</div>

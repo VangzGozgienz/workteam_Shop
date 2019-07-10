@@ -1,4 +1,3 @@
-INSERT INTO `goods` VALUES (1, 'C6hzeNoh5', 'augue eros', 836.04, 577, 'images/lproduct8.png');
 INSERT INTO `goods` VALUES (2, 'qkBcgBOr', 'diam dui', 104.69, 472, 'images/lproduct6.png');
 INSERT INTO `goods` VALUES (3, 'JxACu1B', 'g-^r', 323.13, 451, 'images/lproduct2.png');
 INSERT INTO `goods` VALUES (4, '7ytPVyv8', 'dFW', 658.10, 641, 'images/lproduct3.png');
@@ -59,7 +58,6 @@ INSERT INTO `goods` VALUES (58, 'ZnNZlHAB', 'L', 402.82, 666, 'images/lproduct8.
 INSERT INTO `goods` VALUES (59, 'EcXd', 'g}<H=r', 385.06, 682, 'images/lproduct6.png');
 INSERT INTO `goods` VALUES (60, '1AdMRMQ', 'hT(/', 52.11, 304, 'images/lproduct7.png');
 INSERT INTO `goods` VALUES (61, 'IITBd', '~KwLb]>FLu', 693.27, 189, 'images/lproduct8.png');
-INSERT INTO `goods` VALUES (62, '4A1qe7', '!i.i', 551.18, 565, 'images/lproduct6.png');
 INSERT INTO `goods` VALUES (63, 'SAKT', 'H[6@);HN-', 576.32, 386, 'images/lproduct6.png');
 INSERT INTO `goods` VALUES (64, 'YT1PS', 'w3B', 413.05, 987, 'images/lproduct4.png');
 INSERT INTO `goods` VALUES (65, 'WIy1hci', 'H', 478.72, 56, 'images/lproduct2.png');

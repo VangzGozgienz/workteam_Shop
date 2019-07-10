@@ -79,7 +79,7 @@
 					<span>|</span>
 					<li class="erWrap"><a href="#">收藏夹</a> <em></em>
 						<p class="headEr different">
-							<a href="#">收藏的宝贝</a> <a class="last" href="#">收藏的品牌</a>
+							<a target="_self" href="fav.jsp">收藏的宝贝</a> <a class="last" href="#">收藏的品牌</a>
 						</p></li>
 					<span>|</span>
 					<li class="erWrap"><a href="#">帮助中心</a> <em></em>
@@ -575,8 +575,8 @@
 						<li style="margin-right: 8px">
 							<div class="hoverShow collect"></div> <!-- <div class="hoverShow wish"><em></em>加入心愿单</div> -->
 							<div class="show">
-								<a class="add" href="car/add?pid=<%=g.getGoodsid()%>">加入购物车</a>
-								<a class="contrast" target="_self" href="fav/delete?pid=<%=g.getGoodsid()%>">移除收藏夹</a>
+								<a class="add" target="_self" href="fav/move?pid=<%=g.getGoodsid()%>">加入购物车</a>
+								<a class="contrast" target="_self" href="javascript:deleteProduct(<%=g.getGoodsid() %>)">移出收藏夹</a>
 							</div>
 							<div class="proImg">
 								<a href="#"> <img class="lazy" src="<%=g.getGoodspic()%>"
@@ -600,6 +600,14 @@
 					</ul>
 					
 					<%} %>
+					<script type="text/javascript">
+					function deleteProduct(pid){
+						if(window.confirm('确认删除这个商品吗')){
+							location.href='fav/delete?pid='+pid;
+						}
+					}
+					</script>
+					
 				</div>
 			</div>
 		</div>

@@ -48,6 +48,22 @@ public class FavControl {
 			return "redirect:list";
 		}
 	}
+	@RequestMapping("/move")
+	public String moveProductToShopcar(int pid,HttpSession  session){
+		if(session.getAttribute("logineduser")==null){
+			return "login";
+		}else{
+			int userid=((Users)session.getAttribute("logineduser")).getUserid();
+			
+			/*
+			 * 移入购物车
+			 */
+			int result1=dao.deleteProductFromFav(userid, pid);
+			int result2=dao.moveProductToShopcar(userid, pid);
+			System.out.println(result1>0&&result2>0?"移入成功":"移入失败");
+			return "redirect:list";
+		}
+	}
 	
 	@RequestMapping("/list")
 	public String list(Model m,HttpSession  session){

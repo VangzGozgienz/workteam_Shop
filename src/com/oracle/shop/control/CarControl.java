@@ -1,5 +1,6 @@
 package com.oracle.shop.control;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,25 @@ import com.oracle.shop.model.javabean.Users;
 @Controller
 @RequestMapping("/car")
 public class CarControl {
+	
+	@RequestMapping("/move")
+	public String moveProductfromShopcart(int  pid,HttpSession session) {
+		//1.获取用户在网页上要移入收藏夹的商品ID
+		//2.调用dao方法将这个ID的商品从购物车表中删除
+		//3.从session中获取用户编号
+		
+		int userid=((Users)session.getAttribute("logineduser")).getUserid();
+		System.out.println("删除购物车的方法");
+		int result1=dao.deleteGoodsFromShopcar(userid, pid);
+		
+						
+		//4.将商品的信息加入收藏夹中
+		int result2=dao.moveProductFromCar(pid, userid,new Date().toLocaleString() );
+		
+		
+		System.out.println(result1>0&&result2>0?"移除成功":"移除失败");
+		return "redirect:list";
+	}
 	
 	@RequestMapping("/delete")
 	public String deleteProductFormShopcar(int pid,HttpSession session){

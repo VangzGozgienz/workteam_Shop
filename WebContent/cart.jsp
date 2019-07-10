@@ -127,7 +127,7 @@
 			<div class="headRight">
 			<ul>
 				<li><a class="everday" href="#">每日签到</a></li><span>|</span>
-				<li><a href="#">我的订单</a></li><span>|</span>
+				<li><a href="order/list">我的订单</a></li><span>|</span>
 				<li class="erWrap">
 					<strong></strong>
 					<a href="#">个人中心</a>
@@ -157,7 +157,7 @@
 					<a href="#">收藏夹</a>
 					<em></em>
 					<p class="headEr different">
-						<a href="#">收藏的宝贝</a>
+						<a target="_self" href="fav.jsp">收藏的宝贝</a>
 						<a class="last" href="#">收藏的品牌</a>
 					</p>
 				</li>
@@ -347,7 +347,7 @@
 						</li>
 						<li class="Lastprice">¥ <u><%=c.getGoodsprice()*sc.get(c) %></u></li>
 						<li class="last btn">
-							<a>移入收藏夹</a><br>
+							<a class="move"   href="javascript:moveProduct(<%=c.getGoodsid() %>)">移入收藏夹</a><br>
 							<a class="delet"  href="javascript:deleteProduct(<%=c.getGoodsid() %>)">删除</a>
 						</li>
 					</ul>
@@ -357,12 +357,20 @@
 				<%} %>
 			</ul>
 			<script type="text/javascript">
+			function moveProduct(pid){
+				if(window.confirm('确认将这个商品移入收藏夹吗')){
+					location.href='car/move?pid='+pid;
+				}
+			}
+			</script>
+			<script type="text/javascript">
 			function deleteProduct(pid){
 				if(window.confirm('确认删除这个商品吗')){
 					location.href='car/delete?pid='+pid;
 				}
 			}
 			</script>
+			
 			<div class="account">
 				<ul>
 					<li>收货人:<input type="text" name="name" style="height: 25px;font-size: 14px;box-shadow:0px 0px 3px orange"/></li>

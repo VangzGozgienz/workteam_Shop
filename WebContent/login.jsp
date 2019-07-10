@@ -60,32 +60,50 @@
 			<div class="mainContent boxS">
 				<div class="MCup clearfix">
 					<div class="MCright W310">
-						<form method="post" action="user/login">
+					
+						<form method="post" action="user/login" onsubmit="return check(this)">
 						<h3 class="clearfix">
 							<span>登录澳猫团</span>
 							<a target="_blank" href="register.jsp">免费注册</a>
 						</h3>
 						<p class="userName">
 							<em></em>
-							<input class="W310" name="username" placeholder="请输入您的手机号/邮箱" type="text">
+							<input class="W310" name="username" placeholder="请输入名称" type="text">
 						</p>
 						<p class="passWord">
 							<em></em>
 							<input class="W310" name="password" placeholder="请输入密码" type="password">
 						</p>
-						<p class="clearfix yzm">
-							<input type="text" placeholder="验证码">
-							<span class="Ypic">
-								<span class="YP"></span>
-								<a href="#">换一张</a>
-							</span>
-						</p>
+						<!--<p class="clearfix yzm">-->
+							<!--<input type="text" placeholder="验证码">-->
+							<!--<span class="Ypic">-->
+								<!--<span class="YP"></span>-->
+								<!--<a href="#">换一张</a>-->
+							<!--</span>-->
+						<!--</p>-->
 						<p class="clearfix Jzmm">
 							<span class="checkbox checked"></span>
 							<span>记住密码</span>
 							<a target="_blank" href="#">忘记密码？</a>
 						</p>
 						<input class="loGin W310" type="submit" value="登录" />
+						<script>
+					function check(form) {
+						if (form.username.value == "" || form.password.value == "") {
+								alert("error");
+							return false;
+						}else if(form.username.value!=null && form.password.value!=null  )
+						{ 
+							if(!(<%=session.getAttribute("error")%>))
+								return true;			
+						}else
+						 	return ture;
+
+					}
+					
+
+					</script>
+						
 						</form>
 					</div>
 					<div class="MCleft W115">

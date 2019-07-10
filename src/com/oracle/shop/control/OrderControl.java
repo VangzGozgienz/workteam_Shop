@@ -26,6 +26,19 @@ public class OrderControl {
 	@Autowired
 	private OrderDAO dao;
 
+	@RequestMapping("/delete")
+	public String deleteProductFormorders(String pid){
+		//1.获取用户在网页上要删除的商品id
+		//2.调用dao方法将这个id的商品从购物车表中删除
+		//从session中获取登录的用户编号
+		
+		System.out.println("删除订单的方法");
+		int result=dao.deleteGoodsFromorders(pid);
+		System.out.println(result>0?"删除成功":"删除失败");
+		return "redirect:list";
+	}
+	
+	
 	@RequestMapping("/add")
 	public  String addOrder(int[] pid,int[] count,String name,String address,String remark,HttpSession session){
 		//1.获取提交订单页面上的各种参数（购买的商品编号和对应的数量，收货人的信息和备注）

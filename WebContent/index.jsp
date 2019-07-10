@@ -20,6 +20,11 @@
 <head>
 <base href="<%=basePath%>">
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
 <title>列表-澳猫团</title>
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="css/reset.css">
@@ -27,13 +32,28 @@
 <link rel="stylesheet" href="css/list.css">
 <base target="_blank">
 </head>
+	<script type="text/javascript">
+		function formsubmit(){
+			var maxpage=<%=Integer.parseInt(request.getAttribute("allPage").toString())%>;
+			var pagevalue=document.getElementById("pagenum").value;
+			if (isNaN(pagevalue)) {
+				alert("请输入数字！");
+			}else if (pagevalue==" ") {
+				alert("输入的页数不能为空！");
+			}else if ((pagevalue > maxpage)||(pagevalue < 1)) {
+				alert("请输入限定的页数范围！");
+			}else {
+				location.href="product/list?page"+pagevalue;
+			}
+		}
+	</script>
 <body>
 	<header class="wrap-all">
 		<div class="head center_1200">
 			<!-- 头部左边 -->
 			<div class="headLeft">
 				<div class="hello">
-					<a href="#"> <em></em> <span>澳猫首页</span> <span>嗨，澳猫欢迎你！</span>
+					<a target="_self" href="index.jsp"> <em></em> <span>澳猫首页</span> <span>嗨，澳猫欢迎你！</span>
 					</a>
 				</div>
 				<div class="user">
@@ -50,7 +70,7 @@
 						} %>
 				</div>
 				<div class="phone">
-					<a href="#"> <em></em> <span>手机逛澳猫</span>
+					<a target="_self" href="index.jsp"> <em></em> <span>手机逛澳猫</span>
 					</a>
 				</div>
 			</div>
@@ -58,7 +78,7 @@
 			<!-- 头部右边 -->
 			<div class="headRight">
 				<ul>
-					<li><a href="#">我的订单</a></li>
+					<li><a href="order/list">我的订单</a></li>
 					<span>|</span>
 					<li class="erWrap"><strong></strong> <a href="#">个人中心</a> <em></em>
 						<p class="headEr">
@@ -76,7 +96,7 @@
 					<span>|</span>
 					<li class="erWrap"><a href="#">收藏夹</a> <em></em>
 						<p class="headEr different">
-							<a href="fav/list">收藏的宝贝</a> <a class="last" href="fav/list">收藏的品牌</a>
+							<a target="_self" href="fav/list">收藏的宝贝</a> <a class="last" href="fav/list">收藏的品牌</a>
 						</p></li>
 					<span>|</span>
 					<li class="erWrap"><a href="#">帮助中心</a> <em></em>
@@ -203,7 +223,7 @@
 	<div class="logoAndSearch w1190 textWarp">
 		<!-- logo -->
 		<div class="logo">
-			<a href="index.html">澳猫网</a>
+			<a target="_self" href="index.jsp">澳猫网</a>
 		</div>
 		<!-- 搜索 -->
 		<div class="search">
@@ -861,7 +881,8 @@
 							<div class="hoverShow collect">
 							</div> <!-- <div class="hoverShow wish"><em></em>加入心愿单</div> -->
 							<div class="show">
-								<a class="add" href="car/add?pid=<%=g.getGoodsid() %>">加入购物车</a> <a class="contrast" href="fav/add?pid=<%=g.getGoodsid() %>">添加到收藏夹</a>
+								<a class="add" target="_self" href="car/add?pid=<%=g.getGoodsid() %>">加入购物车</a> 
+								<a class="contrast" target="_self" href="fav/add?pid=<%=g.getGoodsid() %>">添加到收藏夹</a>
 							</div>
 							<div class="proImg">
 								<a href="#"> <img class="lazy" src="<%=g.getGoodspic()%>"
@@ -893,11 +914,30 @@
 <!-- 						<li class="num current"><a href="#">1</a></li> -->
 <!-- 						<li class="num"><a href="#">2</a></li> -->
 <!-- 						<li class="num"><a href="#">3</a></li> -->
+                        <%
+                        	int maxpage=Integer.parseInt(request.getAttribute("allPage").toString());
+                        	int i=1;
+                        	int pagenow=Integer.parseInt(request.getAttribute("nowPage").toString());
+                        	int startpage=((pagenow-1)/4)*4+1;
+                        	for(i=startpage;i<maxpage&&i<=startpage+4;i++){
+                        %>
+                        		<%if(i==pagenow) {%>
+                        			<li class="num current"><a href="product/list?page=<%=i%>" target="_self"><%=i %></a></li>
+                        		<%}else {%>
+                        			<li class="num"><a href="product/list?page=<%=i%>" target="_self"><%=i %></a></li>
+                        		<%}%>
+                          <%}%>
 						<li class="last"><a target="_self" href="product/list?page=<%=request.getAttribute("nextPage") %>">下一页</a></li>
 						<li class="last"><a target="_self" href="product/list?page=<%=request.getAttribute("allPage") %>">尾页</a></li>
-						<li class="txt">向第</li>
-						<li class="ipt"><input type="text"></li>
-						<li><button>跳转</button></li>
+						<li class="txt">输入到第</li>
+						<li> <form method = "post" action ="product/list" id="pageform">
+						<li class= "ipt">
+							<input target="_self" type="text" name="page" id="pagenum">
+						</li>
+						</form></li>
+						<li><a target="_self" onclick="formsubmit()"></a></li>					
+						<!-- <li class="last"><a target="_self" onclick="formsubmit()">跳转</a></li> -->
+						<li class="txt">页   !点击跳转浏览详情！</li>
 					</ul>
 				</div>
 			</div>

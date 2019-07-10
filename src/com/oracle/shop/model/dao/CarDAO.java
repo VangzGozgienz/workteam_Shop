@@ -2,6 +2,8 @@ package com.oracle.shop.model.dao;
 
 import java.util.List;
 
+import javax.enterprise.inject.Alternative;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,6 +24,10 @@ public interface CarDAO {
 	@Insert("insert into shopcart(carnumber,userid,goodsid) values(1,#{userid},#{productid})")
 	public int addProduct(@Param("userid")int userid,@Param("productid")int productid);
 	
+	//使用聚拢函数，将购物车中userID和goodsid一致的商品分组存放并显示goodsnumber
+	//@Select("select * from shopcart group by userid  ")
+	
+	
 	@Select("select *  from shopcart where userid=#{0}")
 	public List<Shopcart> listCartsByUserId(int userid);
 	
@@ -34,4 +40,10 @@ public interface CarDAO {
 	 */
 	@Delete("delete from shopcart where goodsid=#{productid} and userid=#{userid}")
 	public int deleteGoodsFromShopcar(@Param("userid")int userid,@Param("productid")int productid);
+	
+	//在收藏夹表中添加移除的商品信息
+	@Insert("insert into collectors(goodsid,userid,collecttime) values(#{goodsid},#{userid},#{datetime})")
+	public  int moveProductFromCar(@Param("goodsid")int goodsid,@Param("userid")int userid,@Param("datetime")String datetime);
+	
+	
 }
